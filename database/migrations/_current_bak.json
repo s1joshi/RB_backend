@@ -1,0 +1,695 @@
+{
+    "tables": {
+        "Categories": {
+            "tableName": "Categories",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "label": {
+                    "field": "label",
+                    "seqType": "Sequelize.STRING"
+                },
+                "helptext": {
+                    "field": "helptext",
+                    "seqType": "Sequelize.STRING"
+                }
+            },
+            "indexes": []
+        },
+        "Category_Skills": {
+            "tableName": "Category_Skills",
+            "schema": {
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "category_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Categories",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "category_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "skill_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Skills",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "skill_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Cities": {
+            "tableName": "Cities",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "label": {
+                    "field": "label",
+                    "seqType": "Sequelize.STRING"
+                }
+            },
+            "indexes": []
+        },
+        "Companies": {
+            "tableName": "Companies",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "address": {
+                    "field": "address",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Jobs": {
+            "tableName": "Jobs",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "title": {
+                    "field": "title",
+                    "seqType": "Sequelize.STRING"
+                },
+                "description": {
+                    "field": "description",
+                    "seqType": "Sequelize.TEXT"
+                },
+                "no_of_openings": {
+                    "allowNull": true,
+                    "validate": {
+                        "max": 9999
+                    },
+                    "field": "no_of_openings",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "gender": {
+                    "field": "gender",
+                    "seqType": "Sequelize.ENUM('MALE', 'FEMALE', 'ANY')"
+                },
+                "minimum_experience": {
+                    "allowNull": true,
+                    "field": "minimum_experience",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "maximum_experience": {
+                    "allowNull": true,
+                    "field": "maximum_experience",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "minimum_salary": {
+                    "allowNull": true,
+                    "validate": {
+                        "min": 999,
+                        "max": 99999
+                    },
+                    "field": "minimum_salary",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "maximum_salary": {
+                    "allowNull": true,
+                    "validate": {
+                        "min": 999,
+                        "max": 99999
+                    },
+                    "field": "maximum_salary",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "incentives_applicable": {
+                    "field": "incentives_applicable",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "skills": {
+                    "validate": {
+                        "len": [
+                            0,
+                            255
+                        ]
+                    },
+                    "field": "skills",
+                    "seqType": "Sequelize.STRING"
+                },
+                "shift_start_time": {
+                    "allowNull": true,
+                    "validate": {},
+                    "field": "shift_start_time",
+                    "seqType": "Sequelize.TIME"
+                },
+                "shift_end_time": {
+                    "allowNull": true,
+                    "validate": {},
+                    "field": "shift_end_time",
+                    "seqType": "Sequelize.TIME"
+                },
+                "job_address": {
+                    "field": "job_address",
+                    "seqType": "Sequelize.STRING"
+                },
+                "working_days": {
+                    "field": "working_days",
+                    "seqType": "Sequelize.ENUM('5_DAYS_WORKING', '6_DAYS_WORKING', 'OTHERS')"
+                },
+                "job_type": {
+                    "field": "job_type",
+                    "seqType": "Sequelize.ENUM('FULL_TIME', 'PART_TIME', 'CONTRACT', 'WORK_FROM_HOME')"
+                },
+                "other_city": {
+                    "field": "other_city",
+                    "seqType": "Sequelize.STRING"
+                },
+                "status": {
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('ACTIVE', 'DEACTIVATED', 'BLOCKED', 'EXPIRED')"
+                },
+                "expiry_date": {
+                    "field": "expiry_date",
+                    "seqType": "Sequelize.DATEONLY"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "qualification_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Qualifications",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "qualification_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "locality_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Localities",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "locality_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "city_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Cities",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "city_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "category_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Categories",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "category_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "recruiter_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Recruiters",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "recruiter_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "JobSeekers": {
+            "tableName": "JobSeekers",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "phone": {
+                    "unique": true,
+                    "validate": {},
+                    "field": "phone",
+                    "seqType": "Sequelize.STRING"
+                },
+                "name": {
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "gender": {
+                    "field": "gender",
+                    "seqType": "Sequelize.ENUM('MALE', 'FEMALE', 'OTHER')"
+                },
+                "worked_before": {
+                    "allowNull": true,
+                    "field": "worked_before",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "email": {
+                    "allowNull": true,
+                    "validate": {
+                        "isEmail": {
+                            "msg": "INVALID_EMAIL"
+                        }
+                    },
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "other_city": {
+                    "allowNull": true,
+                    "field": "other_city",
+                    "seqType": "Sequelize.STRING"
+                },
+                "is_english_proficient": {
+                    "allowNull": true,
+                    "field": "is_english_proficient",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "qualification_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Qualifications",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "qualification_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "locality_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Localities",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "locality_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "city_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Cities",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "city_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "language_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Languages",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "language_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Job_Applications": {
+            "tableName": "Job_Applications",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "status": {
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('JS_VIEWED', 'JS_CALLED', 'R_CALLED', 'R_REJECTED', 'JS_WHATSAPP')"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "js_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "JobSeekers",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "js_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "job_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Jobs",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "job_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Job_Application_Status": {
+            "tableName": "Job_Application_Status",
+            "schema": {
+                "js_last_action": {
+                    "field": "js_last_action",
+                    "seqType": "Sequelize.ENUM('JS_CALLED', 'JS_WHATSAPP')"
+                },
+                "r_last_action": {
+                    "field": "r_last_action",
+                    "seqType": "Sequelize.ENUM('R_CALLED', 'R_REJECTED')"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "job_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Jobs",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "job_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "js_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "JobSeekers",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "js_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Job_Skills": {
+            "tableName": "Job_Skills",
+            "schema": {
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "job_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Jobs",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "job_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "skill_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Skills",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "skill_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Languages": {
+            "tableName": "Languages",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "label": {
+                    "field": "label",
+                    "seqType": "Sequelize.STRING"
+                }
+            },
+            "indexes": []
+        },
+        "Localities": {
+            "tableName": "Localities",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "label": {
+                    "field": "label",
+                    "seqType": "Sequelize.STRING"
+                },
+                "latitude": {
+                    "field": "latitude",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "longitude": {
+                    "field": "longitude",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "city_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Cities",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "city_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Qualifications": {
+            "tableName": "Qualifications",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "label": {
+                    "field": "label",
+                    "seqType": "Sequelize.STRING"
+                }
+            },
+            "indexes": []
+        },
+        "Recruiters": {
+            "tableName": "Recruiters",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "phone": {
+                    "unique": true,
+                    "validate": {},
+                    "field": "phone",
+                    "seqType": "Sequelize.STRING"
+                },
+                "whatsapp_number": {
+                    "field": "whatsapp_number",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "allowNull": true,
+                    "validate": {
+                        "isEmail": {
+                            "msg": "INVALID_EMAIL"
+                        }
+                    },
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "company_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Companies",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "company_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Skills": {
+            "tableName": "Skills",
+            "schema": {
+                "id": {
+                    "unique": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "label": {
+                    "allowNull": true,
+                    "field": "label",
+                    "seqType": "Sequelize.STRING"
+                }
+            },
+            "indexes": []
+        },
+        "JobSeeker_Categories": {
+            "tableName": "JobSeeker_Categories",
+            "schema": {
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "category_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Categories",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "category_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "js_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "JobSeekers",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "js_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "revision": 15
+}
